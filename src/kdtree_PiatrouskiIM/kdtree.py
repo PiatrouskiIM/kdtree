@@ -46,7 +46,8 @@ class KDTree:
                 node.left, node.right = Node(start=start, end=start + m + 1), Node(start=start + m + 1, end=end)
                 raf_nodes.extend([node.left, node.right])
 
-    def query_single_point(self, x, k, squared_distance_upper_bound=np.inf):
+    def query(self, x, k=1, distance_upper_bound=np.inf):
+        squared_distance_upper_bound = np.square(distance_upper_bound)
         heap = HeapQueue()
         queue = HeapQueue()
 
@@ -80,8 +81,5 @@ class KDTree:
                     favorite, worst = worst, favorite
                 if worst.distance <= squared_distance_upper_bound:
                     queue.push(priority=worst.distance, item=worst)
-        order = np.argsort(heap.priorities)[::-1]
-        return np.asarray(heap.heap)[order]
+        return np.asarray(heap.heap)[np.argsort(heap.priorities)[::-1]]
 
-    def query(self, x, k=2):
-        return self.query_single_point(x=x, k=k)

@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 name = "kdtree_PiatrouskiIM"
 version = "0.0.1"
 authors = [
-  { name="Example Author", email="author@example.com" },
+  { name="Ivan Piatrouski", email="petrovskiim97@gmail.com" },
 ]
 description = "A small example package"
 readme = "README.md"
